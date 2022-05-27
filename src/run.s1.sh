@@ -60,7 +60,7 @@ fi
 echo "python ${extract_bc} ${res_path}/04.flc/fltnc.bam ${res_path}/05.split.linker/align_bc_8.fa">>${step1_script}
 echo "${blastn} -query ${res_path}/05.split.linker/align_bc_8.fa -db ${bclist} -outfmt 6 -word_size 6 -num_threads 8 >${res_path}/05.split.linker/whitelist_8.m6">>${step1_script}
 echo "python ${parse_blastn} ${res_path}/05.split.linker/whitelist_8.m6 ${res_path}/05.split.linker/bc_correct.txt">>${step1_script}
-echo "python ${correct_bc} ${res_path}/05.split.linker/bc_correct.txt ${res_path}/05.split.linker/fltnc.bam ${res_path}/05.split.linker/fltnc.sgr.bam">>${step1_script}
+echo "python ${correct_bc} ${res_path}/05.split.linker/bc_correct.txt ${res_path}/04.flc/fltnc.bam ${res_path}/05.split.linker/fltnc.sgr.bam">>${step1_script}
 
 #Cluster_reads_by_UFM
 if [ ! -d ${res_path}/06.dedup ];then

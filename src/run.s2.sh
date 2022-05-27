@@ -34,8 +34,9 @@ if [ ! -d  ${rsp}/11.annotation ];then
     mkdir ${rsp}/11.annotation
 fi
 #error correction
+echo "python /SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/make_csv_for_dedup.py ${rsp}/06.dedup"
 echo "gzip ${rsp}/06.dedup/dedup.info.csv" >> ${script_file}
 echo "python ${collate} ${rsp}/10.isoform/dedup.5merge.collapsed.group.txt ${rsp}/06.dedup/dedup.info.csv.gz ${rsp}/10.isoform/dedup.5merge.collapsed_classification.filtered_lite_classification.txt ${rsp}/11.annotation/dedup.annotated.csv" >> ${script_file}
 
 #produce seurat
-echo "python ${make_seurat_input} -i ${rsp}/dedup.annotated.csv -a ${rsp}/dedup.5merge.collapsed_classification.filtered_lite.gtf -o ${rsp}/11.annotation" >> ${script_file}
+echo "python ${make_seurat_input} -i ${rsp}/11.annotation/dedup.annotated.csv -a ${rsp}/10.isoform/dedup.5merge.collapsed_classification.filtered_lite.gtf -o ${rsp}/11.annotation" >> ${script_file}
