@@ -28,6 +28,7 @@ class pacbio_analysis():
         self.make_csv_for_dedup_py = make_csv_for_dedup_py
         self.collate_FLNC_gene_info_py = collate_FLNC_gene_info_py
         self.cDNA_Cupcake_sequence_path = cDNA_Cupcake_sequence_path
+        self.collapse_isoforms_by_sam_py = collapse_isoforms_by_sam_py
         self.src_summary_stat = src_summary_stat
 
     def ccs(self):
@@ -256,11 +257,11 @@ class pacbio_analysis():
 
         cmd0 = (f'export PYTHONPATH={self.cDNA_Cupcake_sequence_path}')
         cmd1 = (
-            f'minimap -t 30 -ax splice -uf --secondary=no -C5 {self.homo_fa} {self.dedup_fa} > {self.dedup_fa_sam}'
+            f'minimap2 -t 30 -ax splice -uf --secondary=no -C5 {self.homo_fa} {self.dedup_fa} > {self.dedup_fa_sam}'
         )
         cmd2 = (f'sort -k 3,3 -k 4,4n {self.dedup_fa_sam} > {self.dedup_fa_sort_sam}')
         cmd3 = (
-            f'collapse_isoforms_by_sam_py '
+            f'{self.collapse_isoforms_by_sam_py} '
             f'--input {self.dedup_fa} '
             f'-s {self.dedup_fa_sort_sam} -c 0.99 -i 0.95 --gen_mol_count '
             f'-o {out_dir}/{self.sample}'
@@ -344,7 +345,7 @@ class pacbio_analysis():
         #AS_report
 
     def run_pacbio(self):
-        self.ccs()
+        #self.ccs()
         self.remove_primers()
         self.pattern_detection()
         self.flc()
@@ -380,6 +381,7 @@ if __name__ == "__main__":
     run_analysis = "/SGRNJ/Public/Software/conda_env/celescope1.6.2/lib/python3.6/site-packages/celescope/tools/run_analysis.R"
     collate_FLNC_gene_info_py = "/Personal/fuxin/dfuxin/PROJECTS/Pacbio/cDNA_Cupcake/singlecell/collate_FLNC_gene_info.py"
     cDNA_Cupcake_sequence_path = "/Personal/fuxin/dfuxin/PROJECTS/Pacbio/cDNA_Cupcake/sequence/"
+    collapse_isoforms_by_sam_py = "collapse_isoforms_by_sam.py"
     src_summary_stat = "/Personal/fuxin/dfuxin/Github_repo/Pacbio_Analysis/src/summary_stat.py"
 
     parser = argparse.ArgumentParser()
