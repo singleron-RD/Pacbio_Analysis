@@ -26,16 +26,15 @@ for line in bf:
     ident = line.get_tag('XC')
     i+=1
     if ident in correct_bc.keys():
-        sgr_bc = tuple(['XC',correct_bc[ident]])
-        line.tags = [line.tags[0],line.tags[1],sgr_bc,line.tags[2],line.tags[4],line.tags[5],line.tags[6],
-        line.tags[7],line.tags[8],line.tags[9],line.tags[10],line.tags[11],line.tags[12],line.tags[13],
-        line.tags[3],line.tags[15],line.tags[16]]
+        line.set_tag('XC',correct_bc[ident])
         obf.write(line)
         c+=1
 
-with open("/Personal/fuxin/dfuxin/PROJECTS/Pacbio/5.Split_linker_and_barcode/stat.txt","a") as out:
-    out.write("BAM has "+str(i)+" items.")
-    out.write(str(c)+" item's XC are corrected.")
+with open(outbam +".stat.txt","a") as out:
+    out.write("BAM has items:\t"+str(i)+"\n")
+    stat_percent = round(c/i,4)*100
+    out.write("XC corrected:\t"+str(c)+"\t("+str(stat_percent)+"%)")
+
     
 
     
