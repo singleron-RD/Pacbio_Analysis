@@ -8,10 +8,13 @@ Third-generation single cell sequencing (Pacbio) analysis pipeline.
 
 ###### 创建 conda 环境，安装依赖包
 `cd Pacbio_Analysis`
+
 `conda create -n pacbio_v1 -y --file conda_pkgs.txt`
 ###### 安装依赖软件
 [Celescope](https://github.com/singleron-RD/CeleScope/blob/master/docs/installation.md)
+
 [cDNA_Cupcake](https://github.com/Magdoll/cDNA_Cupcake)
+
 [SQANTI3](https://github.com/ConesaLab/SQANTI3)
 
 ## Usage
