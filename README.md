@@ -26,15 +26,23 @@ Third-generation single cell sequencing (Pacbio) analysis pipeline.
 
 ###### Parameters
 
-`--ccs_bam` CCS bam file, required.
+`--ccs_bam` CCS bam file, required
+
 `--sample`  Sample name/Output file prefix, required
+
 `--outdir`  Output file directory
+
 `--primer_fasta`    primer sequence file, fasta fomat, optional   
+
 `--bu_pattern`  Barcord and UMI pattern expression, default T-12U-57B
+
 `--blastn`  Blastn tool path
+
 `--bclist`  Barcode sequence file
+
 `--genomeDir`   Reference genome directory, default human genome ensembl 92
-`--steps`   set to run specific steps
+
+`--steps`   set to run specific steps, optional steps include: ccs, remove.primers, pattern.bc.umi, flc, split.linker, dedup, featurecount, count, run_seurat, run_isoform 
 
 
 
