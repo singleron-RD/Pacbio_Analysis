@@ -20,11 +20,11 @@ Third-generation single cell sequencing (Pacbio) analysis pipeline.
 
 ## Usage
 
-###### Command
+##### Command
 
 `python src/run_pacbio.py --ccs_bam input_bam_file --sample sample_name <optional parameters>`
 
-###### Parameters
+##### Parameters
 
 `--ccs_bam` CCS bam file, required
 
@@ -46,7 +46,7 @@ Third-generation single cell sequencing (Pacbio) analysis pipeline.
 
 
 
-###### Exsample
+##### Exsample
 ```
 conda activate pacbio_v1
 python src/run_pacbio.py 
@@ -67,7 +67,7 @@ python src/run_pacbio.py
     --steps ccs,remove.primers,pattern.bc.umi,flc,split.linker,dedup,run_isoform
 ```
 
-###### Output
+## Output
 
 If all the steps finished, we'll get:
 
