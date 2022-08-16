@@ -418,6 +418,7 @@ class pacbio_analysis():
     def summary(self):
         #QC_stat
         cmd = f'python {self.src_summary_stat} {self.outdir} {self.sample}'
+        print("Running command: ",cmd)
         subprocess.check_call(cmd, shell = True)
         #celescope_stat
         #AS_report
