@@ -406,9 +406,9 @@ class pacbio_analysis():
             f'-o {out_dir}'
             )
         print("Running command: ",cmd1)
-        #subprocess.check_call(cmd1, shell = True)
+        subprocess.check_call(cmd1, shell = True)
         print("Running command: ",cmd2)
-        #subprocess.check_call(cmd2, shell = True)
+        subprocess.check_call(cmd2, shell = True)
         print("Running command: ",cmd3)
         subprocess.check_call(cmd3, shell = True)
         print("Running command: ",cmd4)
@@ -444,8 +444,8 @@ class pacbio_analysis():
             rec = self.dedup()
             print(rec)
         if 'run_isoform' in self.steps:
-            #rec = self.run_isoform()
-            #print(rec)
+            rec = self.run_isoform()
+            print(rec)
             rec = self.isoform_annotation()
             print(rec)
             cmd_report = f'cp {self.outdir}/10.isoform/{self.sample}.collapsed_classification.filtered_lite_SQANTI3_report.html {self.outdir}/{self.sample}.SQANTI3_report.html'
