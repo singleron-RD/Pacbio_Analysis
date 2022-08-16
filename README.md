@@ -52,7 +52,7 @@ conda activate pacbio_v1
 python src/run_pacbio.py 
     --ccs_bam  test.bam
     --sample test_sample
-    --outdir test_res_1
+    --outdir test_res_all
     --steps all
 ```
 
@@ -63,7 +63,7 @@ conda activate pacbio_v1
 python src/run_pacbio.py 
     --ccs_bam  test.bam
     --sample test_sample
-    --outdir test_res_1
+    --outdir test_res_isoform
     --steps ccs,remove.primers,pattern.bc.umi,flc,split.linker,dedup,run_isoform
 ```
 
