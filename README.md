@@ -42,7 +42,7 @@ Third-generation single cell sequencing (Pacbio) analysis pipeline.
 
 `--genomeDir`   Reference genome directory, default human genome ensembl 92
 
-`--steps`   set to run specific steps, optional steps include: ccs, remove.primers, pattern.bc.umi, flc, split.linker, dedup, featurecount, count, run_seurat, run_isoform 
+`--steps`   set to run specific steps, optional steps include: ccs, remove_primer, pattern_detection, flc, split_linker, dedup, featurecount, count, run_seurat, run_isoform 
 
 
 
@@ -64,7 +64,7 @@ python src/run_pacbio.py
     --ccs_bam  test.bam
     --sample test_sample
     --outdir test_res_isoform
-    --steps ccs,remove.primers,pattern.bc.umi,flc,split.linker,dedup,run_isoform
+    --steps ccs,remove_primer,pattern_detection,flc,split_linker,dedup,run_isoform
 ```
 
 ## Output
