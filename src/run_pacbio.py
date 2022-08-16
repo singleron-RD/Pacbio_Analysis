@@ -42,7 +42,7 @@ class pacbio_analysis():
         out_dir = f'{self.outdir}/01.ccs'
 
         self.summary_01 = f'{out_dir}/ccs.stat.txt'
-        self.ccs_bam_ls = outdir+"/"+self.ccs_bam.split('/')[-1]
+        self.ccs_bam_ls = out_dir+"/"+self.ccs_bam.split('/')[-1]
 
         if os.path.exists(self.ccs_bam_ls):
             return('CCS bam file already exist!')
@@ -526,7 +526,7 @@ if __name__ == "__main__":
         barcode_match = args.barcode_match
     if args.steps:
         if args.steps == 'all':
-            step_list = ["ccs","remove.primers","pattern.bc.umi","flc","split.linker","dedup","featurecount","count","seurat","isoform"]
+            step_list = ["ccs","remove_primer","pattern_detection","flc","split_linker","dedup","featurecount","count","run_seurat","run_isoform"]
         else:
             step_list = args.steps.strip().split(',')
         print("Set steps: ",step_list)
