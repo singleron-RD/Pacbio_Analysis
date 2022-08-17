@@ -119,6 +119,10 @@ outdir
 |--sample.SQANTI3_report.html
 ```
 
+## Notice
+
+Provide the absolute path of ccs bam file to avoid errors.
+
 
 
 
