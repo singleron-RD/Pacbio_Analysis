@@ -99,7 +99,7 @@ python src/run_pacbio.py
 
 ## Output
 
-If all the steps finished, we'll get:
+If all the steps completed, we'll get:
 
 ```
 outdir
