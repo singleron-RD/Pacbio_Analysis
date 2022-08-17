@@ -33,6 +33,10 @@ To analysis alternative splicing characteristics:
 
 ## Installation
 
+###### Version
+
+v1.1
+
 ###### Clone git
 `git clone git@github.com:singleron-RD/Pacbio_Analysis.git`
 
@@ -78,9 +82,11 @@ To analysis alternative splicing characteristics:
 
 ##### Exsample
 ```
+cd test
+mkdir test_res_all
 conda activate pacbio_v1
 python src/run_pacbio.py 
-    --ccs_bam  test.bam
+    --ccs_bam  <path>/test.bam
     --sample test_sample
     --outdir test_res_all
     --steps all
@@ -89,9 +95,11 @@ python src/run_pacbio.py
 To analysis isoform only:
 
 ```
+cd test
+mkdir test_res_isoform
 conda activate pacbio_v1
 python src/run_pacbio.py 
-    --ccs_bam  test.bam
+    --ccs_bam  <path>/test.bam
     --sample test_sample
     --outdir test_res_isoform
     --steps ccs,remove_primer,pattern_detection,flc,split_linker,dedup,run_isoform
