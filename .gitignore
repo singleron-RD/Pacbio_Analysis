@@ -19,6 +19,9 @@ work_packages.sh
 Untitled.ipynb
 
 tools/picard.jar
+tools/cDNA_Cupcake
+tools/CeleScope
+tools/SQANTI3-4.2
 
 src/nohup.out
 src/cigar.py
@@ -32,3 +35,4 @@ src/Untitled.ipynb
 .ipynb_checkpoints/
 src/.ipynb_checkpoints/
 test/.ipynb_checkpoints/
+
