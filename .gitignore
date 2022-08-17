@@ -29,3 +29,6 @@ src/run.s3.sh
 src/run.s4.sh
 src/Untitled.ipynb
 
+.ipynb_checkpoints/
+src/.ipynb_checkpoints/
+test/.ipynb_checkpoints/
