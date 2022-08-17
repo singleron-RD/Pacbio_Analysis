@@ -4,12 +4,12 @@ out_dir=$2
 homo_fa=/SGRNJ/Public/Database/genome/homo_sapiens/ensembl_92/Homo_sapiens.GRCh38.fa
 homo_gtf=/SGRNJ/Public/Database/genome/homo_sapiens/ensembl_92/Homo_sapiens.GRCh38.92.chr.gtf
 
-mkfq_fr_bam=/Personal/fuxin/dfuxin/PROJECTS/Pacbio/0.script/mkfq_fr_bam.py
+mkfq_fr_bam=/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/mkfq_fr_bam.py
 
 rsp=${out_dir}/res
 script_file=${out_dir}/${sample}.s3.sh
 
-echo "export PYTHONPATH=/Personal/fuxin/dfuxin/PROJECTS/Pacbio/cDNA_Cupcake">${script_file}
+#echo "export PYTHONPATH=/Personal/fuxin/dfuxin/PROJECTS/Pacbio/cDNA_Cupcake">${script_file}
 
 if [ ! -d  ${rsp}/07.featurecount ];then
     mkdir ${rsp}/07.featurecount
