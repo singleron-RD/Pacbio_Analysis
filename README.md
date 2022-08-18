@@ -66,17 +66,18 @@ v1.1
 
 `--outdir`  Output file directory
 
-`--primer_fasta`    primer sequence file, fasta fomat, optional   
+`--primer_fasta`    Primer sequence file, fasta fomat, optional   
 
 `--bu_pattern`  Barcord and UMI pattern expression, default T-12U-57B
 
 `--blastn`  Blastn tool path
 
-`--bclist`  Barcode sequence file
+`--bclist`  Barcode sequence file, used in linker_split step
 
 `--genomeDir`   Reference genome directory, default human genome ensembl 92
 
-`--steps`   set to run specific steps, optional steps include: ccs, remove_primer, pattern_detection, flc, split_linker, dedup, featurecount, count, run_seurat, run_isoform 
+`--steps`   set specific steps to run, "all" to run all the steps, optional steps include: ccs, remove_primer, pattern_detection, flc, split_linker, dedup, featurecount, count, run_seurat, run_isoform, required
+`--report`   Whether to generate summary statistical report, default True
 
 
 
