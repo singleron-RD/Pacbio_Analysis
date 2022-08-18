@@ -403,14 +403,18 @@ class pacbio_analysis():
             f'python {make_seurat_input} '
             f'-i {out_dir}/dedup.annotated.csv '
             f'-a {self.dir_isoform}/{self.sample}.collapsed_classification.filtered_lite.gtf '
-            f'-o {out_dir}'
+            f'-o {out_dir} '
+            f'--clobber'
             )
         print("Running command: ",cmd1)
         subprocess.check_call(cmd1, shell = True)
         print("Running command: ",cmd2)
         subprocess.check_call(cmd2, shell = True)
         print("Running command: ",cmd3)
-        subprocess.check_call(cmd3, shell = True)
+        if os.path.exists(f'{out_dir}/dedup.annotated.csv'):
+            print('Annotation file already exists')
+        else:
+            subprocess.check_call(cmd3, shell = True)
         print("Running command: ",cmd4)
         subprocess.check_call(cmd4, shell = True)
         return('Isoform annotation succeed!')

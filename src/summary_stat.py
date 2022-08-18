@@ -7,12 +7,13 @@ out_dir = sys.argv[1]
 sample = sys.argv[2]
 
 def out_stat(c):
-    summary_stat = out_dir+"/"+ sample + "Pacbio_qc.stat.txt"
-    if os.path.exists(summary_stat):
-        cmd = f'rm {summary_stat}'
-        subprocess.check_call(cmd, shell = True)
     with open(summary_stat,"a") as out_sta:
         out_sta.write(c+'\n')
+
+summary_stat = out_dir+"/"+ sample + "Pacbio_qc.stat.txt"
+if os.path.exists(summary_stat):
+    cmd = f'rm {summary_stat}'
+    subprocess.check_call(cmd, shell = True)
 
 summary_01 = out_dir+"/01.ccs/ccs.stat.txt"
 if os.path.exists(summary_01):
@@ -51,14 +52,14 @@ if os.path.exists(summary_04):
         stat_1 = "num_reads_flnc:\t"+str(s04_dict['num_reads_flnc'])+"/"+str(s04_dict['num_reads_fl'])+"\t("+str(stat_1_percent)+"%)"
     out_stat(stat_1)
 
-summary_05 = out_dir+"/05.split.linker/fltnc.sgr.bam.txt"
+summary_05 = out_dir+"/05.split.linker/fltnc.sgr.bam.stat.txt"
 if os.path.exists(summary_05):
     out_stat("\n# 05.split.linker")
     with open(summary_05,"r") as s05:
         for line in s05:
             out_stat(line.strip())
 
-summary_06 = out_dir+"/06.dedup/dedup.bam.stat.txt"
+summary_06 = out_dir+"/06.dedup/dedup.bam.stat"
 if os.path.exists(summary_06):
     out_stat("\n# 06.dedup")
     with open(summary_06,"r") as s06:
