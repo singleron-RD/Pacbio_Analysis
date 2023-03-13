@@ -31,3 +31,12 @@ src/Untitled.ipynb
 src/.ipynb_checkpoints/
 test/.ipynb_checkpoints/
 
+#cDNA_Cupcake
+tools/cDNA_Cupcake/*.o
+tools/cDNA_Cupcake/*.pyc
+tools/cDNA_Cupcake/*.so
+
+tools/cDNA_Cupcake/build/*
+tools/cDNA_Cupcake/cupcake/tofu/branch/*
+tools/cDNA_Cupcake/git/*
+tools/cDNA_Cupcake/gitignore
