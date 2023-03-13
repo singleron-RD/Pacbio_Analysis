@@ -38,6 +38,10 @@ class pacbio_analysis():
         self.collapse_isoforms_by_sam_py = collapse_isoforms_by_sam_py
         self.src_summary_stat = src_summary_stat
 
+    def check_outdir(self):
+        if not os.path.exists(self.outdir):
+            cmd_dir = (f'mkdir ${self.outdir}')
+
     def ccs(self):
         out_dir = f'{self.outdir}/01.ccs'
 
@@ -472,9 +476,9 @@ class pacbio_analysis():
 if __name__ == "__main__":
     cw_dir = os.getcwd()
     print("Work directory:"+cw_dir)
-    sample = "test"
-    outdir = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/test/test_res_1"
-    ccs_bam = "/SGRNJ03/DATA03/2111/20211124_4/L210924011-L_CCS/m64236_211121_102448.hifi_reads.bam"
+    sample = "sample"
+    #outdir = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/test/test_res_1"
+    #ccs_bam = "/SGRNJ03/DATA03/2111/20211124_4/L210924011-L_CCS/m64236_211121_102448.hifi_reads.bam"
     primer_fasta = "/SGRNJ03/randd/user/fuxin/PROJECTS/Pacbio/2.Detect_and_remove_primers/primers.fasta"
     bu_pattern = "T-12U-57B"
     blastn = "/SGRNJ/Database/script/soft/scISA-Tools/tools/blastn"
@@ -495,7 +499,7 @@ if __name__ == "__main__":
     run_analysis = "/SGRNJ/Public/Software/conda_env/celescope1.6.2/lib/python3.6/site-packages/celescope/tools/run_analysis.R"
     collate_FLNC_gene_info_py = "/SGRNJ03/randd/user/fuxin/PROJECTS/Pacbio/cDNA_Cupcake/singlecell/collate_FLNC_gene_info.py"
     cDNA_Cupcake_sequence_path = "/SGRNJ03/randd/user/fuxin/PROJECTS/Pacbio/cDNA_Cupcake/sequence/"
-    collapse_isoforms_by_sam_py = cw_dir+"/../tools/cDNA_Cupcake/cupcake/tofu/collapse_isoforms_by_sam.py"
+    collapse_isoforms_by_sam_py = "collapse_isoforms_by_sam.py"
     src_summary_stat = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/summary_stat.py"
 
     parser = argparse.ArgumentParser()
@@ -510,12 +514,16 @@ if __name__ == "__main__":
     parser.add_argument('--steps')
     parser.add_argument('--report',default = "True")
     parser.add_argument('--mapfile',default = "None")
+    parser.add_argument('--cupcake_sequence_path', default = "/SGRNJ03/randd/user/fuxin/PROJECTS/Pacbio/cDNA_Cupcake/sequence/")
     args = parser.parse_args()
 
     sample = args.sample
     outdir = args.outdir
     ccs_bam = args.ccs_bam
     report = args.report
+    
+    if args.cupcake_sequence_path:
+        cDNA_Cupcake_sequence_path = args.cupcake_sequence_path
 
     if args.primer_fasta:
         primer_fasta = args.primer_fasta
