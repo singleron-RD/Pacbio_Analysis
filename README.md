@@ -41,16 +41,43 @@ v1.1
 `git clone git@github.com:singleron-RD/Pacbio_Analysis.git`
 
 ###### Create conda env
-`cd Pacbio_Analysis`
+`conda create -n pacbio_isoseq python=3.7`
 
-`conda create -n pacbio_v1 -y --file conda_pkgs.txt`
+`conda activate pacbio_isoseq`
 
 ###### Install dependency software
-[Celescope](https://github.com/singleron-RD/CeleScope/blob/master/docs/installation.md)
 
-[cDNA_Cupcake](https://github.com/Magdoll/cDNA_Cupcake)
+`conda install bamtools isoseq3`
 
-[SQANTI3](https://github.com/ConesaLab/SQANTI3)
+`conda install -c anaconda cython scikit-learn pandas numpy`
+
+`conda install pybedtools bx-python bcbio-gff gffread`
+
+`conda install -c conda-forge r-ggplotify`
+
+`conda install -c r r-reshape`
+
+`conda install -c bioconda bioconductor-noiseq`
+
+`conda install -c r r-dt`
+
+`conda install -c bioconda samtools`
+
+`conda install -c bioconda lima`
+
+`conda install -c bioconda minimap2`
+
+`conda install -c conda-forge r-gridextra`
+
+###### Install [cDNA_Cupcake](https://github.com/Magdoll/cDNA_Cupcake)
+
+`cd Pacbio_Analysis/tools/cDNA_Cupcake`
+
+`python setup.py build`
+
+`python setup.py install`
+
+`export PYTHONPATH=$PYTHONPATH:<path_to_Cupcake>/sequence/`
 
 ## Usage
 
