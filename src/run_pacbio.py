@@ -470,7 +470,8 @@ class pacbio_analysis():
             print(rec)
 
 if __name__ == "__main__":
-
+    cw_dir = os.getcwd()
+    print("Work directory:"+cw_dir)
     sample = "test"
     outdir = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/test/test_res_1"
     ccs_bam = "/SGRNJ03/DATA03/2111/20211124_4/L210924011-L_CCS/m64236_211121_102448.hifi_reads.bam"
@@ -494,7 +495,7 @@ if __name__ == "__main__":
     run_analysis = "/SGRNJ/Public/Software/conda_env/celescope1.6.2/lib/python3.6/site-packages/celescope/tools/run_analysis.R"
     collate_FLNC_gene_info_py = "/SGRNJ03/randd/user/fuxin/PROJECTS/Pacbio/cDNA_Cupcake/singlecell/collate_FLNC_gene_info.py"
     cDNA_Cupcake_sequence_path = "/SGRNJ03/randd/user/fuxin/PROJECTS/Pacbio/cDNA_Cupcake/sequence/"
-    collapse_isoforms_by_sam_py = "collapse_isoforms_by_sam.py"
+    collapse_isoforms_by_sam_py = cw_dir+"/../tools/cDNA_Cupcake/cupcake/tofu/collapse_isoforms_by_sam.py"
     src_summary_stat = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/summary_stat.py"
 
     parser = argparse.ArgumentParser()
@@ -508,6 +509,7 @@ if __name__ == "__main__":
     parser.add_argument('--barcode_match',default = "None")
     parser.add_argument('--steps')
     parser.add_argument('--report',default = "True")
+    parser.add_argument('--mapfile',default = "None")
     args = parser.parse_args()
 
     sample = args.sample
