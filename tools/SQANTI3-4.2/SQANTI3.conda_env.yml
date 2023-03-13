@@ -1,0 +1,47 @@
+name: SQANTI3.env
+channels:
+  - conda-forge
+  - bioconda
+  - anaconda
+  - r
+  - defaults
+dependencies:
+  - bcbiogff
+  - bedtools
+  - biopython
+  - bioconductor-noiseq
+  - bx-python
+  - desalt
+  - gffread
+  - gmap
+  - kallisto
+  - minimap2
+  - numpy
+  - openssl
+  - pandoc
+  - perl
+  - psutil
+  - pybedtools
+  - pysam
+  - python>=3.7.6
+  - r>=3.6.0
+  - r-biocmanager
+  - r-dplyr
+  - r-ggplot2
+  - r-ggplotify
+  - r-gridbase
+  - r-gridextra
+  - r-htmltools
+  - r-reshape
+  - r-scales
+  - r-rmarkdown
+  - r-stringi
+  - r-dt
+  - r-plotly
+  - r-plyr
+  - samtools
+  - scipy
+  - star
+  - slamem
+  - pip:
+    - ultra-bioinformatics

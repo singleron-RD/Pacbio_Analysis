@@ -18,11 +18,6 @@ nohup.out
 work_packages.sh
 Untitled.ipynb
 
-tools/picard.jar
-tools/cDNA_Cupcake
-tools/CeleScope
-tools/SQANTI3-4.2
-
 src/nohup.out
 src/cigar.py
 src/run_pacbio.ipynb
