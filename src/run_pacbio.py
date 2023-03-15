@@ -408,8 +408,17 @@ class pacbio_analysis():
             f'-i {out_dir}/dedup.annotated.csv '
             f'-a {self.dir_isoform}/{self.sample}.collapsed_classification.filtered_lite.gtf '
             f'-o {out_dir} '
-            f'--clobber'
             )
+        cmd5 = (
+            f'mv {out_dir}/isoforms_seurat {out_dir}/gene_seurat'
+        )
+        cmd6 = (
+            f'python {make_seurat_input} '
+            f'-i {out_dir}/dedup.annotated.csv '
+            f'-a {self.dir_isoform}/{self.sample}.collapsed_classification.filtered_lite.gtf '
+            f'-o {out_dir} '
+            f'--keep novel'
+        )
         print("Running command: ",cmd1)
         subprocess.check_call(cmd1, shell = True)
         print("Running command: ",cmd2)
@@ -421,6 +430,9 @@ class pacbio_analysis():
             subprocess.check_call(cmd3, shell = True)
         print("Running command: ",cmd4)
         subprocess.check_call(cmd4, shell = True)
+        subprocess.check_call(cmd5, shell = True)
+        print("Running command: ",cmd6)
+        subprocess.check_call(cmd6, shell = True)
         return('Isoform annotation succeed!')
 
     def summary(self):
