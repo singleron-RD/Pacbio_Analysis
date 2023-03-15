@@ -109,18 +109,8 @@ v1.1
 
 
 ##### Exsample
-```
-cd test
-mkdir test_res_all
-conda activate pacbio_v1
-python src/run_pacbio.py 
-    --ccs_bam  <path>/test.bam
-    --sample test_sample
-    --outdir test_res_all
-    --steps all
-```
 
-To analysis isoform only:
+To analysis isoform only (Recommend):
 
 ```
 cd test
@@ -131,6 +121,18 @@ python src/run_pacbio.py
     --sample test_sample
     --outdir test_res_isoform
     --steps ccs,remove_primer,pattern_detection,flc,split_linker,dedup,run_isoform
+```
+
+To run all the steps (Calculate expression matrix with Celescope):
+```
+cd test
+mkdir test_res_all
+conda activate pacbio_v1
+python src/run_pacbio.py 
+    --ccs_bam  <path>/test.bam
+    --sample test_sample
+    --outdir test_res_isoform
+    --steps all
 ```
 
 ## Output

@@ -39,4 +39,6 @@ tools/cDNA_Cupcake/*.so
 tools/cDNA_Cupcake/build/*
 tools/cDNA_Cupcake/cupcake/tofu/branch/*
 tools/cDNA_Cupcake/git/*
-itools/cDNA_Cupcake/gitignore
+tools/cDNA_Cupcake/gitignore
+
+notebooks/data
