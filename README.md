@@ -37,37 +37,25 @@ To analysis alternative splicing characteristics:
 
 v1.1
 
-###### Clone git
-`git clone git@github.com:singleron-RD/Pacbio_Analysis.git`
 
 ###### Create conda env
-`conda create -n pacbio_isoseq python=3.7`
 
-`conda activate pacbio_isoseq`
+It is recommended to use mamba, [download and install mamba](https://mamba.readthedocs.io/en/latest/install).
 
-###### Install dependency software
+```
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+bash Mambaforge-Linux-x86_64.sh
+```
 
-`conda install bamtools isoseq3`
+###### Clone git and install dependency software
 
-`conda install -c anaconda cython scikit-learn pandas numpy`
+`git clone git@github.com:singleron-RD/Pacbio_Analysis.git`
 
-`conda install pybedtools bx-python bcbio-gff gffread`
+`cd Pacbio_Analysis`
 
-`conda install -c conda-forge r-ggplotify`
+`mamba create -n pacbio_isoseq -y --file conda_pkgs.txt`
 
-`conda install -c r r-reshape`
-
-`conda install -c bioconda bioconductor-noiseq`
-
-`conda install -c r r-dt`
-
-`conda install -c bioconda samtools`
-
-`conda install -c bioconda lima`
-
-`conda install -c bioconda minimap2`
-
-`conda install -c conda-forge r-gridextra`
+`mamba activate pacbio_isoseq`
 
 ###### Install [cDNA_Cupcake](https://github.com/Magdoll/cDNA_Cupcake)
 
@@ -83,15 +71,19 @@ v1.1
 
 ##### Command
 
-`python src/run_pacbio.py --ccs_bam input_bam_file --sample sample_name <optional parameters>`
+`python src/run_pacbio.py --ccs_bam input_bam_file -- genomeDir genome_directory --sample sample_name <optional parameters>`
 
 ##### Parameters
 
 `--ccs_bam` CCS bam file, required
 
+`--genomeDir`   Reference genome directory, required
+
 `--sample`  Sample name/Output file prefix, required
 
-`--outdir`  Output file directory
+`--steps`   set specific steps to run, "all" to run all the steps, optional steps include: ccs, remove_primer, pattern_detection, flc, split_linker, dedup, featurecount, count, run_seurat, run_isoform, required
+
+`--outdir`  Output file directory, default current
 
 `--primer_fasta`    Primer sequence file, fasta fomat, optional   
 
@@ -101,9 +93,6 @@ v1.1
 
 `--bclist`  Barcode sequence file, used in linker_split step
 
-`--genomeDir`   Reference genome directory, default human genome ensembl 92
-
-`--steps`   set specific steps to run, "all" to run all the steps, optional steps include: ccs, remove_primer, pattern_detection, flc, split_linker, dedup, featurecount, count, run_seurat, run_isoform, required
 `--report`   Whether to generate summary statistical report, default True
 
 
@@ -118,6 +107,7 @@ mkdir test_res_isoform
 conda activate pacbio_v1
 python src/run_pacbio.py 
     --ccs_bam  <path>/test.bam
+    --genomeDir genome_directory
     --sample test_sample
     --outdir test_res_isoform
     --steps ccs,remove_primer,pattern_detection,flc,split_linker,dedup,run_isoform
@@ -130,6 +120,7 @@ mkdir test_res_all
 conda activate pacbio_v1
 python src/run_pacbio.py 
     --ccs_bam  <path>/test.bam
+    --genomeDir genome_directory
     --sample test_sample
     --outdir test_res_isoform
     --steps all
@@ -159,7 +150,7 @@ outdir
 
 ## Notice
 
-Provide the absolute path of ccs bam file to avoid errors.
+Provide the absolute path of ccs bam file to avoid unexpected errors.
 
 
 
