@@ -5,7 +5,7 @@ out_file = sys.argv[2]
 
 i = 1
 bclist = {}
-with open("/Personal/fuxin/dfuxin/PROJECTS/Pacbio/5.Split_linker_and_barcode/bclist") as infile:
+with open(in_file) as infile:
     for line in infile:
         bclist[str(i)] = line.strip()
         i+=1
