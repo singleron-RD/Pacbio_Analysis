@@ -534,9 +534,6 @@ if __name__ == "__main__":
     ccs_bam = args.ccs_bam
     report = args.report
     
-    if args.cupcake_sequence_path:
-        cDNA_Cupcake_sequence_path = args.cupcake_sequence_path
-
     if args.primer_fasta:
         primer_fasta = args.primer_fasta
     if args.pacbio_source_path:
