@@ -81,6 +81,8 @@ bash Mambaforge-Linux-x86_64.sh
 
 `--sample`  Sample name/Output file prefix, required
 
+`--pacbio_source_path` Absolute path to Pacbio_analysis
+
 `--steps`   set specific steps to run, "all" to run all the steps, optional steps include: ccs, remove_primer, pattern_detection, flc, split_linker, dedup, featurecount, count, run_seurat, run_isoform, required
 
 `--outdir`  Output file directory, default current
@@ -108,6 +110,7 @@ conda activate pacbio_v1
 python src/run_pacbio.py 
     --ccs_bam  <path>/test.bam
     --genomeDir genome_directory
+    --pacbio_source_path <path>/Pacbio_Analysis
     --sample test_sample
     --outdir test_res_isoform
     --steps ccs,remove_primer,pattern_detection,flc,split_linker,dedup,run_isoform
@@ -121,6 +124,7 @@ conda activate pacbio_v1
 python src/run_pacbio.py 
     --ccs_bam  <path>/test.bam
     --genomeDir genome_directory
+    --pacbio_source_path <path>/Pacbio_Analysis
     --sample test_sample
     --outdir test_res_isoform
     --steps all
