@@ -526,7 +526,7 @@ if __name__ == "__main__":
     parser.add_argument('--steps')
     parser.add_argument('--report',default = "True")
     parser.add_argument('--mapfile',default = "None")
-    parser.add_argument('--cupcake_sequence_path', default = "/SGRNJ03/randd/user/fuxin/PROJECTS/Pacbio/cDNA_Cupcake/sequence/")
+    parser.add_argument('--pacbio_source_path',default = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis")
     args = parser.parse_args()
 
     sample = args.sample
@@ -539,6 +539,21 @@ if __name__ == "__main__":
 
     if args.primer_fasta:
         primer_fasta = args.primer_fasta
+    if args.pacbio_source_path:
+        pacbio_source_path = args.pacbio_source_path
+        extract_bc = pacbio_source_path + "/src/extract_bc.py"
+        parse_blastn = pacbio_source_path + "/src/parse_blastn.py"
+        src_correct_bc = pacbio_source_path + "/src/correct_bc.py"
+        mkfq_fr_bam = pacbio_source_path + "/src/mkfq_fr_bam.py"
+        sqanti3_qc = pacbio_source_path + "/tools/SQANTI3-4.2/sqanti3_qc.py"
+        sqanti3_rulerfilter = pacbio_source_path + "/tools/SQANTI3-4.2/sqanti3_RulesFilter.py"
+        collate = pacbio_source_path + "/tools/cDNA_Cupcake/singlecell/collate_FLNC_gene_info.py"
+        make_seurat_input = pacbio_source_path + "/tools/cDNA_Cupcake/singlecell/make_seurat_input.py"
+        make_csv_for_dedup_py = pacbio_source_path + "/src/make_csv_for_dedup.py"
+        collate_FLNC_gene_info_py = pacbio_source_path + "/tools/cDNA_Cupcake/singlecell/collate_FLNC_gene_info.py"
+        cDNA_Cupcake_sequence_path = pacbio_source_path + "/tools/cDNA_Cupcake/sequence/"
+        src_summary_stat = pacbio_source_path + "/src/summary_stat.py"
+
     if args.bu_pattern:
         print("Set pattern: "+args.bu_pattern)
         bu_pattern = args.bu_pattern
