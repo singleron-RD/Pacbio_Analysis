@@ -417,7 +417,7 @@ class pacbio_analysis():
             f'-i {out_dir}/dedup.annotated.csv '
             f'-a {self.dir_isoform}/{self.sample}.collapsed_classification.filtered_lite.gtf '
             f'-o {out_dir} '
-            f'--keep novel'
+            f'--keep_novel'
         )
         print("Running command: ",cmd1)
         subprocess.check_call(cmd1, shell = True)
