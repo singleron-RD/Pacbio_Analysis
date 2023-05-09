@@ -37,6 +37,7 @@ class pacbio_analysis():
         self.cDNA_Cupcake_sequence_path = cDNA_Cupcake_sequence_path
         self.collapse_isoforms_by_sam_py = collapse_isoforms_by_sam_py
         self.src_summary_stat = src_summary_stat
+        self.featurecount_bam_py = featurecount_bam_py
 
     def check_outdir(self):
         if not os.path.exists(self.outdir):
@@ -233,7 +234,7 @@ class pacbio_analysis():
             f'-L'
         )
         cmd7 = (
-            f'python ../src/featurecount_bam.py ' 
+            f'python {self.featurecount_bam_py} ' 
             f'{self.homo_gtf} '
             f'{self.minimap_sam}.featureCounts '
             f'{self.minimap_sam}' 
@@ -513,6 +514,7 @@ if __name__ == "__main__":
     cDNA_Cupcake_sequence_path = "/SGRNJ03/randd/user/fuxin/PROJECTS/Pacbio/cDNA_Cupcake/sequence/"
     collapse_isoforms_by_sam_py = "collapse_isoforms_by_sam.py"
     src_summary_stat = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/summary_stat.py"
+    featurecount_bam_py = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/featurecount_bam.py"
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--sample')
@@ -550,6 +552,7 @@ if __name__ == "__main__":
         collate_FLNC_gene_info_py = pacbio_source_path + "/tools/cDNA_Cupcake/singlecell/collate_FLNC_gene_info.py"
         cDNA_Cupcake_sequence_path = pacbio_source_path + "/tools/cDNA_Cupcake/sequence/"
         src_summary_stat = pacbio_source_path + "/src/summary_stat.py"
+        featurecount_bam_py = pacbio_source_path + "/src/featurecount_bam.py"
 
     if args.bu_pattern:
         print("Set pattern: "+args.bu_pattern)
