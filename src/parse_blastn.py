@@ -1,14 +1,19 @@
 import sys
 
-in_file = sys.argv[1]
-out_file = sys.argv[2]
+bclist_file = sys.argv[1]
+in_file = sys.argv[2]
+out_file = sys.argv[3]
 
 i = 1
 bclist = {}
-with open(in_file) as infile:
-    for line in infile:
-        bclist[str(i)] = line.strip()
-        i+=1
+with open(bclist_file) as infile:
+    line = infile.readline()
+    while line:
+        if line.startswith('>'):
+            id = line.strip()[1:]
+            seq = infile.readline().strip()
+            bclist[id] = seq
+        line = infile.readline()
 
 blast = {}
 with open(in_file) as infile:
@@ -27,7 +32,7 @@ with open(in_file) as infile:
             else:
                 blast[seqid] = {"ident":ident,bcid:bclist[nline[1]]}
 
-with open(out_file,"a") as out:
+with open(out_file,"w") as out:
     for item in blast:
         if len(blast[item].keys()) == 4:
             newline = blast[item]['ident']+'\t'+blast[item]['1']+blast[item]['2']+blast[item]['3']
