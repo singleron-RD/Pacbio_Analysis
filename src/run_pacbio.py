@@ -38,6 +38,8 @@ class pacbio_analysis():
         self.collapse_isoforms_by_sam_py = collapse_isoforms_by_sam_py
         self.src_summary_stat = src_summary_stat
         self.featurecount_bam_py = featurecount_bam_py
+        self.make_gene_seurat = make_gene_seurat
+        self.hgnc_gene_set = hgnc_gene_set
 
     def check_outdir(self):
         if not os.path.exists(self.outdir):
@@ -152,7 +154,7 @@ class pacbio_analysis():
             f'{self.blastn} -query {self.align_bc_8_fa} -db {self.bclist} -outfmt 6 -word_size 6 -num_threads 8 '
             f'>{self.white_list}'
         )
-        cmd3 = (f'python {self.parse_blastn} {self.white_list} {self.f_bc_correct}')
+        cmd3 = (f'python {self.parse_blastn} {self.bclist} {self.white_list} {self.f_bc_correct}')
         cmd4 = (f'python {self.src_correct_bc} {self.f_bc_correct} {self.fltnc_bam} {self.fltnc_sgr_bam}')
         print("Running command: ",cmd1)
         subprocess.check_call(cmd1, shell = True)
@@ -411,7 +413,7 @@ class pacbio_analysis():
             f'-o {out_dir} '
             )
         cmd5 = (
-            f'mv {out_dir}/isoforms_seurat {out_dir}/gene_seurat'
+            f'mv {out_dir}/isoforms_seurat {out_dir}/known_isoform_seurat'
         )
         cmd6 = (
             f'python {make_seurat_input} '
@@ -419,6 +421,18 @@ class pacbio_analysis():
             f'-a {self.dir_isoform}/{self.sample}.collapsed_classification.filtered_lite.gtf '
             f'-o {out_dir} '
             f'--keep_novel'
+        )
+        cmd7 = (
+            f'mv {out_dir}/isoforms_seurat {out_dir}/with_novel_isoform_seurat'
+        )
+        cmd8 = (
+            f'mkdir {out_dir}/gene_seurat'
+        )
+        cmd9 = (
+            f'Rscript {self.make_gene_seurat} '
+            f'--known_isoform_seurat {out_dir}/known_isoform_seurat '
+            f'--outdir {out_dir}/gene_seurat '
+            f'--gene_name_set {self.hgnc_gene_set}'
         )
         print("Running command: ",cmd1)
         subprocess.check_call(cmd1, shell = True)
@@ -430,10 +444,17 @@ class pacbio_analysis():
         else:
             subprocess.check_call(cmd3, shell = True)
         print("Running command: ",cmd4)
+        print("Running command: ",cmd5)
         subprocess.check_call(cmd4, shell = True)
         subprocess.check_call(cmd5, shell = True)
         print("Running command: ",cmd6)
+        print("Running command: ",cmd7)
         subprocess.check_call(cmd6, shell = True)
+        subprocess.check_call(cmd7, shell = True)
+        print("Running command: ", cmd8)
+        print("Running command: ", cmd9)
+        subprocess.check_call(cmd8, shell = True)
+        subprocess.check_call(cmd9, shell = True)
         return('Isoform annotation succeed!')
 
     def summary(self):
@@ -515,6 +536,8 @@ if __name__ == "__main__":
     collapse_isoforms_by_sam_py = "collapse_isoforms_by_sam.py"
     src_summary_stat = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/summary_stat.py"
     featurecount_bam_py = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/featurecount_bam.py"
+    make_gene_seurat = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/make_gene_seurat.R"
+    hgnc_gene_set = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/config/hgnc_complete_set.txt"
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--sample')
@@ -528,7 +551,7 @@ if __name__ == "__main__":
     parser.add_argument('--steps')
     parser.add_argument('--report',default = "True")
     parser.add_argument('--mapfile',default = "None")
-    parser.add_argument('--pacbio_source_path',default = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis")
+    parser.add_argument('--pacbio_source_path',default = "None")
     args = parser.parse_args()
 
     sample = args.sample
@@ -553,6 +576,9 @@ if __name__ == "__main__":
         cDNA_Cupcake_sequence_path = pacbio_source_path + "/tools/cDNA_Cupcake/sequence/"
         src_summary_stat = pacbio_source_path + "/src/summary_stat.py"
         featurecount_bam_py = pacbio_source_path + "/src/featurecount_bam.py"
+        make_gene_seurat = pacbio_source_path + "/src/make_gene_seurat.R"
+        hgnc_gene_set = pacbio_source_path + "/config/hgnc_complete_set.txt"
+
 
     if args.bu_pattern:
         print("Set pattern: "+args.bu_pattern)
