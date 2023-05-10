@@ -42,3 +42,5 @@ tools/cDNA_Cupcake/git/*
 tools/cDNA_Cupcake/gitignore
 
 notebooks/data
+
+tmp_src/*
