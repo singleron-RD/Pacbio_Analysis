@@ -49,7 +49,7 @@ bash Mambaforge-Linux-x86_64.sh
 
 ###### Clone git and install dependency software
 
-`git clone git@github.com:singleron-RD/Pacbio_Analysis.git`
+`git clone https://github.com/singleron-RD/Pacbio_Analysis.git`
 
 `cd Pacbio_Analysis`
 
