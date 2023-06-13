@@ -573,6 +573,9 @@ if __name__ == "__main__":
         primer_fasta = args.primer_fasta
     if args.pacbio_source_path:
         pacbio_source_path = args.pacbio_source_path
+        blastn = "blastn"
+        primer_fasta = pacbio_source_path+"/config/primers.fasta"
+        bclist = pacbio_source_path+"/config/bclist.fa"
         extract_bc = pacbio_source_path + "/src/extract_bc.py"
         parse_blastn = pacbio_source_path + "/src/parse_blastn.py"
         src_correct_bc = pacbio_source_path + "/src/correct_bc.py"
