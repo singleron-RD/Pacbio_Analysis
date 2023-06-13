@@ -557,6 +557,8 @@ if __name__ == "__main__":
     parser.add_argument('--bu_pattern')
     parser.add_argument('--bclist')
     parser.add_argument('--genomeDir')
+    parser.add_argument('--genome_fa')
+    parser.add_argument('--genome_gtf')
     parser.add_argument('--barcode_match',default = "None")
     parser.add_argument('--steps')
     parser.add_argument('--report',default = "True")
@@ -591,8 +593,6 @@ if __name__ == "__main__":
         featurecount_bam_py = pacbio_source_path + "/src/featurecount_bam.py"
         make_gene_seurat = pacbio_source_path + "/src/make_gene_seurat.R"
         hgnc_gene_set = pacbio_source_path + "/config/hgnc_complete_set.txt"
-
-
     if args.bu_pattern:
         print("Set pattern: "+args.bu_pattern)
         bu_pattern = args.bu_pattern
@@ -602,6 +602,12 @@ if __name__ == "__main__":
     if args.genomeDir:
         print("Set geonome directory: ",args.genomeDir)
         genomeDir = args.genomeDir
+        homo_fa = genomeDir+"/Homo_sapiens.GRCh38.fa"
+        homo_gtf = genomeDir+"/Homo_sapiens.GRCh38.92.chr.gtf"
+    if args.genome_fa:
+        homo_fa = args.genome_fa
+    if args.genome_gtf:
+        homo_gtf = args.genome_gtf
     if args.barcode_match:
         print("Set match barcode in NGS: ",args.barcode_match)
         barcode_match = args.barcode_match
