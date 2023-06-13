@@ -1,6 +1,0 @@
-biopython
-bx-python>=0.7.3
-numpy
-bcbio-gff
-sklearn
-pysam

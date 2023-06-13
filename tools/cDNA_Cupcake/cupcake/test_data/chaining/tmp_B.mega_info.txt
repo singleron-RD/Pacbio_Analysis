@@ -1,4 +1,0 @@
-pbid	A	B
-PB.1.1	PB.1.1	PB.1.1
-PB.2.1	NA	PB.2.1
-PB.2.2	PB.2.1	NA
