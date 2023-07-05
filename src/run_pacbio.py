@@ -397,13 +397,13 @@ class pacbio_analysis():
             cmd_dir = (f'mkdir {out_dir}')
             subprocess.check_call(cmd_dir, shell = True)
 
-        if not os.path.exists(f'{out_dir}/known_isoform_seurat'):
+        if os.path.exists(f'{out_dir}/known_isoform_seurat'):
             cmd_dir1 = (f'rm -r {out_dir}/known_isoform_seurat')
             subprocess.check_call(cmd_dir1, shell = True)
-        if not os.path.exists(f'{out_dir}/with_novel_isoform_seurat'):
+        if os.path.exists(f'{out_dir}/with_novel_isoform_seurat'):
             cmd_dir2 = (f'rm -r {out_dir}/with_novel_isoform_seurat')
             subprocess.check_call(cmd_dir2, shell = True)
-        if not os.path.exists(f'{out_dir}/gene_seurat'):
+        if os.path.exists(f'{out_dir}/gene_seurat'):
             cmd_dir3 = (f'rm -r {out_dir}/gene_seurat')
             subprocess.check_call(cmd_dir3, shell = True)
 
