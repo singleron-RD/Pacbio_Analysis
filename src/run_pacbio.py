@@ -40,6 +40,7 @@ class pacbio_analysis():
         self.featurecount_bam_py = featurecount_bam_py
         self.make_gene_seurat = make_gene_seurat
         self.hgnc_gene_set = hgnc_gene_set
+        self.word_size = word_size
 
     def check_outdir(self):
         if not os.path.exists(self.outdir):
@@ -151,7 +152,7 @@ class pacbio_analysis():
 
         cmd1 = (f'python {self.extract_bc} {self.fltnc_bam} {self.align_bc_8_fa}')
         cmd2 = (
-            f'{self.blastn} -query {self.align_bc_8_fa} -db {self.bclist} -outfmt 6 -word_size 6 -num_threads 8 '
+            f'{self.blastn} -query {self.align_bc_8_fa} -db {self.bclist} -outfmt 6 -word_size {self.word_size} -num_threads 8 '
             f'>{self.white_list}'
         )
         cmd3 = (f'python {self.parse_blastn} {self.bclist} {self.white_list} {self.f_bc_correct}')
@@ -165,6 +166,7 @@ class pacbio_analysis():
         print("Running command: ",cmd4)
         subprocess.check_call(cmd4, shell = True)
         return('Split linker succeed!')
+        #return('Split linker developing!')
 
     def dedup(self):
         out_dir = f'{self.outdir}/06.dedup'
@@ -548,6 +550,7 @@ if __name__ == "__main__":
     featurecount_bam_py = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/featurecount_bam.py"
     make_gene_seurat = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/src/make_gene_seurat.R"
     hgnc_gene_set = "/SGRNJ03/randd/user/fuxin/Github_repo/Pacbio_Analysis/config/hgnc_complete_set.txt"
+    word_size = 6
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--sample')
@@ -564,6 +567,7 @@ if __name__ == "__main__":
     parser.add_argument('--report',default = "True")
     parser.add_argument('--mapfile',default = "None")
     parser.add_argument('--pacbio_source_path',default = "None")
+    parser.add_argument('--lib_version',default = "None")
     args = parser.parse_args()
 
     sample = args.sample
@@ -608,6 +612,17 @@ if __name__ == "__main__":
         homo_fa = args.genome_fa
     if args.genome_gtf:
         homo_gtf = args.genome_gtf
+    if args.lib_version == "scopeV3.0.1":
+        word_size = 7
+        extract_bc = pacbio_source_path + "/src/extract_bc_scopeV3.0.1.py"
+        parse_blastn = pacbio_source_path + "/src/parse_blastn_scopeV3.0.1.py"
+        bclist = pacbio_source_path+"/config/scopeV3.0.1/bclist.fa"
+    if args.lib_version == "scopeV2.2.1":
+        word_size = 6
+        extract_bc = pacbio_source_path + "/src/extract_bc.py"
+        parse_blastn = pacbio_source_path + "/src/parse_blastn.py"
+        bclist = pacbio_source_path+"/config/scopeV2.2.1/bclist.fa"
+
     if args.barcode_match:
         print("Set match barcode in NGS: ",args.barcode_match)
         barcode_match = args.barcode_match
